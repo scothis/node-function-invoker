@@ -59,32 +59,4 @@ describe("function promoter =>", () => {
         const result = promoteFunction(streamingUserFunction);
         result({ $order: [source] }, { $order: [streamingOutput] });
     });
-
-    describe("when called with functions with an argument transformer => ", () => {
-        it("adapts the argument transformer", () => {
-            const someFunction = require("./helpers/transformers/valid-argument-transformers-request-reply-function");
-
-            const promotedFunction = promoteFunction(someFunction);
-
-            const originalTransformer = someFunction["$argumentTransformers"];
-            expect(originalTransformer).toBeTruthy();
-            expect(promotedFunction["$argumentTransformers"]).toEqual(
-                originalTransformer
-            );
-        });
-    });
-
-    describe("when called with functions with an invalid number of argument transformers => ", () => {
-        it("adapts the argument transformer", () => {
-            const someFunction = require("./helpers/transformers/valid-argument-transformers-request-reply-function");
-
-            const promotedFunction = promoteFunction(someFunction);
-
-            const originalTransformer = someFunction["$argumentTransformers"];
-            expect(originalTransformer).toBeTruthy();
-            expect(promotedFunction["$argumentTransformers"]).toEqual(
-                originalTransformer
-            );
-        });
-    });
 });

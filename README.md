@@ -104,37 +104,6 @@ Note that the lifecycle hooks must be fields on the exported function.
 The hooks may be either synchronous or async functions.
 Lifecycle functions have up to **10 seconds** to complete their work, or the function invoker will abort.
 
-## Argument transformers
-
-Sometimes, the content-type information is not enough to extract the payload the user function is supposed to interact
-with.
-
-Argument transformers are custom functions that take a `Message` (as defined by [`@projectriff/message`](https://github.com/projectriff/node-message))
-and return whatever the function needs.
-
-The `Message` payload is the result of the first content-type-based  conversion pass. For instance, if the input
-content-type is `application/json` and its payload is `'{"key": "value"}'` the payload of the `Message` exposed to the
-transformer will be the corresponding object representation (i.e. `{"key": "value"}`).
-
-Argument transformers are declared this way:
-
-```js
-module.exports.$argumentTransformers = [
-    // transformer for first input
-    (message) => {
-        return message.payload;
-    },
-    // transformer for second input
-    (message) => {
-        return message.headers.getValue('x-some-header');
-    },
-    // ...
-];
-```
-
-If `$argumentTransformers` is not declared, the default transformer assigned to each input extracts the `Message`
-payload.
-
 ## Supported protocols
 
 This invoker supports only streaming, and complies to [riff streaming protocol](https://github.com/projectriff/streaming-processor).
