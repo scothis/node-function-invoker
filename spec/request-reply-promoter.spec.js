@@ -1,6 +1,7 @@
 const { newMappingTransform } = require("./helpers/factories");
 const promoteFunction = require("../lib/request-reply-promoter");
 const { PassThrough, Readable } = require("stream");
+const { Message } = require("@projectriff/message");
 
 describe("function promoter =>", () => {
     const data = [1, 2, 4];
@@ -17,7 +18,9 @@ describe("function promoter =>", () => {
     let source;
 
     beforeEach(() => {
-        source = Readable.from(data);
+        source = Readable.from(
+            data.map((payload) => Message.builder().payload(payload).build())
+        );
         streamingOutput = new PassThrough({ objectMode: true });
     });
 

@@ -1,5 +1,6 @@
 const MappingTransform = require("../lib/mapping-transform");
 const { finished } = require("stream");
+const { Message } = require("@projectriff/message");
 
 describe("MappingTransform =>", () => {
     let mappingTransform;
@@ -29,7 +30,7 @@ describe("MappingTransform =>", () => {
                 expect(err.cause.message).toEqual("x.foo is not a function");
                 done();
             });
-            mappingTransform.write({});
+            mappingTransform.write(Message.builder().payload({}).build());
         });
     });
 
@@ -54,7 +55,7 @@ describe("MappingTransform =>", () => {
                 expect(err.cause.message).toEqual("x.foo is not a function");
                 done();
             });
-            mappingTransform.write({});
+            mappingTransform.write(Message.builder().payload({}).build());
         });
     });
 
@@ -81,7 +82,7 @@ describe("MappingTransform =>", () => {
                 expect(err.cause.message).toEqual("x.foo is not a function");
                 done();
             });
-            mappingTransform.write({});
+            mappingTransform.write(Message.builder().payload({}).build());
         });
     });
 });

@@ -54,7 +54,7 @@ describe("input unmarshaller =>", () => {
                         )
                     );
                 }
-                expect(chunk).toEqual(expectedPayloads[index++]);
+                expect(chunk.payload).toEqual(expectedPayloads[index++]);
             });
             unmarshaller.on("end", () => {
                 done();
@@ -105,7 +105,9 @@ describe("input unmarshaller =>", () => {
                                 )
                             );
                         }
-                        expect(chunk).toEqual(expectedPayloads[index++]);
+                        expect(chunk.payload).toEqual(
+                            expectedPayloads[index++]
+                        );
                     });
                     unmarshaller.on("end", () => {
                         done();

@@ -1,4 +1,5 @@
 const MappingTransform = require("../lib/mapping-transform");
+const { Message } = require("@projectriff/message");
 
 describe("MappingTransform =>", () => {
     let mappingTransform;
@@ -18,7 +19,11 @@ describe("MappingTransform =>", () => {
                 expect(chunk).toEqual(42);
                 done();
             });
-            mappingTransform.write({ foo: () => 42 });
+            mappingTransform.write(
+                Message.builder()
+                    .payload({ foo: () => 42 })
+                    .build()
+            );
         });
     });
 
@@ -33,7 +38,11 @@ describe("MappingTransform =>", () => {
                 expect(chunk).toEqual(42);
                 done();
             });
-            mappingTransform.write({ foo: () => 42 });
+            mappingTransform.write(
+                Message.builder()
+                    .payload({ foo: () => 42 })
+                    .build()
+            );
         });
     });
 
@@ -48,7 +57,11 @@ describe("MappingTransform =>", () => {
                 expect(chunk).toEqual(42);
                 done();
             });
-            mappingTransform.write({ foo: () => 42 });
+            mappingTransform.write(
+                Message.builder()
+                    .payload({ foo: () => 42 })
+                    .build()
+            );
         });
     });
 });
